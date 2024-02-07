@@ -425,7 +425,7 @@ export const updatePesananTransaction = (order_id, transaction_status) => {
 
     // Dapatkan data dari firebase
 
-    update(ref(db, "histories/" + order_id), {
+    update(ref(db, `histories/${order_id}`), {
       status: status,
     })
       .then((res) => {

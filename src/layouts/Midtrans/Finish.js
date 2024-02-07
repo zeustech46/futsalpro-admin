@@ -126,7 +126,7 @@ class Finish extends Component {
                   fontSize={18}
                   ml={1}
                 >
-                  {order_id}
+                  {order_id.split("-")[0] + "-" + order_id.split("-")[1]}
                 </ArgonTypography>
               </ArgonBox>
 
