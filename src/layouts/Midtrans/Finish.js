@@ -44,7 +44,7 @@ class Finish extends Component {
     }
 
     //masuk ke action update Status History
-    // this.props.dispatch(updatePesananTransaction(order_id, transaction_status));
+    this.props.dispatch(updatePesananTransaction(order_id, transaction_status));
   }
 
   toHistory() {
