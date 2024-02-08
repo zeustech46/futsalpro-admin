@@ -415,10 +415,11 @@ export const updatePesananTransaction = (order_id, transaction_status) => {
         ? "lunas"
         : transaction_status;
 
-    //hapus data di notifications waitings
-    remove(ref(db, `notifications/${uid}/waitings/${order_id}`));
-
     if (transaction_status === "settlement") {
+      //hapus data di notifications waitings
+      remove(ref(db, `notifications/${uid}/waitings/${order_id}`));
+
+      //notification
       const idNotification = new Date().getTime();
       const now = new Date();
       const jam = String(now.getHours()).padStart(2, "0"); // Mendapatkan jam (dalam format 24 jam)
