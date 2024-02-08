@@ -418,19 +418,22 @@ export const updatePesananTransaction = (order_id, transaction_status) => {
     //hapus data di notifications waitings
     remove(ref(db, `notifications/${uid}/waitings/${order_id}`));
 
-    const idNotification = new Date().getTime();
-    const now = new Date();
-    const jam = String(now.getHours()).padStart(2, "0"); // Mendapatkan jam (dalam format 24 jam)
-    const menit = String(now.getMinutes()).padStart(2, "0"); // Mendapatkan menit
-    const dataBaruNotification = {
-      tanggal: new Date().toLocaleDateString("en-CA"),
-      waktu: `${jam}:${menit}`,
-      title: "✅ Pembayaran Berhasil 💸",
-      message: "Enjoy, jadwal pesananmu sedang menantimu",
-      unread: true,
-    };
-    //Kirim Pesan Informasi Notification
-    set(ref(db, `notifications/${uid}/all/${idNotification}`), dataBaruNotification);
+    if (transaction_status === "settlement") {
+      const idNotification = new Date().getTime();
+      const now = new Date();
+      const jam = String(now.getHours()).padStart(2, "0"); // Mendapatkan jam (dalam format 24 jam)
+      const menit = String(now.getMinutes()).padStart(2, "0"); // Mendapatkan menit
+      const dataBaruNotification = {
+        id: idNotification,
+        tanggal: new Date().toLocaleDateString("en-CA"),
+        waktu: `${jam}:${menit}`,
+        title: "✅ Pembayaran Berhasil 💸",
+        message: "Enjoy, jadwal pesananmu sedang menantimu",
+        unread: true,
+      };
+      //Kirim Pesan Informasi Notification
+      set(ref(db, `notifications/${uid}/all/${idNotification}`), dataBaruNotification);
+    }
 
     update(ref(db, `histories/${order_id}`), {
       status: status,
