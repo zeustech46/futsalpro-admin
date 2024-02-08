@@ -382,36 +382,25 @@ export const cancelPesanan = (order_id) => {
   return (dispatch) => {
     dispatchLoading(dispatch, CANCEL_PESANAN);
 
-    axios({
-      method: "post",
-      url: URL_MIDTRANS_STATUS + order_id + "/cancel",
-      headers: HEADER_MIDTRANS,
-      timeout: API_TIMEOUT,
-    })
-      .then((res) => {
-        //get Keranjang By UID User
-        onValue(
-          ref(db, `histories/${order_id}`),
-          (snapshot) => {
-            if (snapshot.val()) {
-              //ambil data keranjang
-              const data = snapshot.val();
-              dispatch(deletePesananDetail(data));
+    //get Keranjang By UID User
+    onValue(
+      ref(db, `histories/${order_id}`),
+      (snapshot) => {
+        if (snapshot.val()) {
+          //ambil data keranjang
+          const data = snapshot.val();
+          dispatch(deletePesananDetail(data));
 
-              //update status menjadi "GAGAL"
-              update(ref(db, `histories/${order_id}`), { status: "gagal" });
+          //update status menjadi "GAGAL"
+          update(ref(db, `histories/${order_id}`), { status: "gagal" });
 
-              dispatchSuccess(dispatch, CANCEL_PESANAN, res);
-            }
-          },
-          {
-            onlyOnce: true,
-          }
-        );
-      })
-      .catch((error) => {
-        dispatchError(dispatch, CANCEL_PESANAN, error);
-      });
+          dispatchSuccess(dispatch, CANCEL_PESANAN, res);
+        }
+      },
+      {
+        onlyOnce: true,
+      }
+    );
   };
 };
 
@@ -419,12 +408,29 @@ export const updatePesananTransaction = (order_id, transaction_status) => {
   return (dispatch) => {
     dispatchLoading(dispatch, UPDATE_PESANAN_TRANSACTION);
 
+    const uid = order_id.split("-")[2];
+
     const status =
       transaction_status === "settlement" || transaction_status === "capture"
         ? "lunas"
         : transaction_status;
 
-    // Dapatkan data dari firebase
+    //hapus data di notifications waitings
+    remove(ref(db, `notifications/${uid}/waitings/${order_id}`));
+
+    const idNotification = new Date().getTime();
+    const now = new Date();
+    const jam = String(now.getHours()).padStart(2, "0"); // Mendapatkan jam (dalam format 24 jam)
+    const menit = String(now.getMinutes()).padStart(2, "0"); // Mendapatkan menit
+    const dataBaruNotification = {
+      tanggal: new Date().toLocaleDateString("en-CA"),
+      waktu: `${jam}:${menit}`,
+      title: "✅ Pembayaran Berhasil 💸",
+      message: "Enjoy, jadwal pesananmu sedang menantimu",
+      unread: true,
+    };
+    //Kirim Pesan Informasi Notification
+    set(ref(db, `notifications/${uid}/all/${idNotification}`), dataBaruNotification);
 
     update(ref(db, `histories/${order_id}`), {
       status: status,

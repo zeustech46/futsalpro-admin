@@ -36,6 +36,8 @@ class Finish extends Component {
     const order_id = params.get("order_id");
     const transaction_status = params.get("transaction_status");
 
+    console.log(order_id, transaction_status);
+
     if (order_id) {
       this.setState({
         order_id: order_id,

@@ -20,7 +20,7 @@ class Error extends Component {
     let params = new URLSearchParams(search);
     const order_id = params.get("order_id");
 
-    // this.props.dispatch(cancelPesanan(order_id));
+    this.props.dispatch(cancelPesanan(order_id));
 
     return (
       <Grid container justifyContent="center" height="100vh">
