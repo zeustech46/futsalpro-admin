@@ -8,7 +8,7 @@ import ArgonInput from "components/ArgonInput";
 import ArgonButton from "components/ArgonButton";
 import IllustrationLayout from "layouts/authentication/components/IllustrationLayout";
 import { loginUser } from "../../../action/AuthAction";
-import bgImage from "assets/images/img-1.jpg";
+import bgImage from "assets/images/signin-illustration.jpg";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { checkAuthenticationLogin } from "../../../utils/checkAuthentication/index";
@@ -92,12 +92,10 @@ class Login extends Component {
           </Box>
         )}
         <IllustrationLayout
-          title="Sign In"
+          title="Login Admin"
           description="Masukkan email dan password"
           illustration={{
             image: bgImage,
-            title: '"The More Difficult The Victory, The Greater The Happiness In Winning."',
-            description: "Pele`",
           }}
         >
           <ArgonBox component="form" role="form">
@@ -122,9 +120,9 @@ class Login extends Component {
               />
             </ArgonBox>
 
-            <ArgonBox mt={8} mb={1} onClick={() => this.onSubmit()}>
+            <ArgonBox mt={5} mb={1} onClick={() => this.onSubmit()}>
               <ArgonButton color="primary" size="large" fullWidth>
-                Sign In
+                Login
               </ArgonButton>
             </ArgonBox>
           </ArgonBox>

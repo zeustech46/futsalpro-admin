@@ -32,7 +32,7 @@ function Slider({ listQuotesResult, listPicturesResult }) {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
 
-  const slider = listPicturesResult ? listPicturesResult : [bg3, bg2, bg1];
+  const slider = [bg3, bg2, bg1];
   const sliderQoutes = listQuotesResult;
 
   return (

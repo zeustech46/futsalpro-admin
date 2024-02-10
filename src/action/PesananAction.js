@@ -268,12 +268,12 @@ export const deletePesanan = (order_id_user, uid) => {
       ref(db, `histories/${order_id}`),
       (snapshot) => {
         if (snapshot.val()) {
+          //hapus di histories
+          remove(ref(db, `histories/${order_id}`));
+
           //ambil data keranjang
           const data = snapshot.val();
           dispatch(deletePesananDetail(data));
-
-          //hapus di histories
-          remove(ref(db, `histories/${order_id}`));
         }
       },
       {
@@ -394,7 +394,7 @@ export const cancelPesanan = (order_id) => {
           //update status menjadi "GAGAL"
           update(ref(db, `histories/${order_id}`), { status: "gagal" });
 
-          dispatchSuccess(dispatch, CANCEL_PESANAN, res);
+          dispatchSuccess(dispatch, CANCEL_PESANAN, data);
         }
       },
       {

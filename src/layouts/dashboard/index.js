@@ -32,7 +32,6 @@ import { numberWithCommas } from "../../utils/numberFormat/index";
 import {
   getListUserTotal,
   getListQuotes,
-  getListPictures,
   orderToday,
   moneyToday,
   salesThisMonth,
@@ -59,7 +58,6 @@ class Dashboard extends Component {
     this.props.dispatch(salesSixMonths(LastSixMonths()));
     this.props.dispatch(salesThisMonth(new Date().toLocaleDateString("en-CA")));
     this.props.dispatch(getListQuotes());
-    // this.props.dispatch(getListPictures());
   }
 
   // Fungsi untuk menghitung percentBar dalam bentuk persentase %
@@ -160,36 +158,6 @@ class Dashboard extends Component {
 
     return (
       <DashboardLayout>
-        {/* {logoutLoading && (
-          <Box
-            sx={{
-              display: "flex",
-              width: "100%",
-              height: "100%",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "rgba(0, 0, 0, 0.6)",
-              position: "absolute",
-              zIndex: 100, //because Default Zindex Drawer Material Ui = 1200
-            }}
-          >
-            <ArgonBox
-              sx={{
-                backgroundColor: "#ffffff",
-                borderRadius: 3,
-                alignItems: "center",
-                justifyContent: "center",
-                display: "flex",
-              }}
-              py={5}
-              px={8}
-            >
-              <CircularProgress />
-              <ArgonTypography ml={3}>Loading ...</ArgonTypography>
-            </ArgonBox>
-          </Box>
-        )} */}
-
         <DashboardNavbar />
 
         <ArgonBox py={3}>

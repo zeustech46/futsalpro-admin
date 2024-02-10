@@ -1,7 +1,6 @@
 import {
   GET_LIST_USER_TOTAL,
   GET_LIST_QUOTES,
-  GET_LIST_PICTURES,
   ORDER_TODAY,
   MONEY_TODAY,
   SALES_THIS_MONTH,
@@ -16,10 +15,6 @@ const initialState = {
   listQuotesLoading: false,
   listQuotesResult: false,
   listQuotesError: false,
-
-  listPicturesLoading: false,
-  listPicturesResult: false,
-  listPicturesError: false,
 
   orderTodayLoading: false,
   orderTodayResult: false,
@@ -53,13 +48,6 @@ export default function reducer(state = initialState, action) {
         listQuotesLoading: action.payload.loading,
         listQuotesResult: action.payload.data,
         listQuotesError: action.payload.errorMessage,
-      };
-    case GET_LIST_PICTURES:
-      return {
-        ...state,
-        listPicturesLoading: action.payload.loading,
-        listPicturesResult: action.payload.data,
-        listPicturesError: action.payload.errorMessage,
       };
     case ORDER_TODAY:
       return {

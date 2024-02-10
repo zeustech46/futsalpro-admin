@@ -12,18 +12,11 @@ import LogoFutsalPro from "assets/images/logo-futsalpro.png";
 // Argon Dashboard 2 MUI example components
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import PageLayout from "examples/LayoutContainers/PageLayout";
+import Card from "@mui/material/Card";
 
 function IllustrationLayout({ color, header, title, description, button, illustration, children }) {
   return (
     <PageLayout background="white">
-      {/* <DefaultNavbar
-        action={{
-          type: "external",
-          route: "https://creative-tim.com/product/argon-dashboard-material-ui",
-          label: "Free Download",
-          ...button,
-        }}
-      /> */}
       <Grid container>
         <Grid item xs={12} lg={6}>
           <ArgonBox
@@ -36,63 +29,39 @@ function IllustrationLayout({ color, header, title, description, button, illustr
             position="relative"
             textAlign="start"
             borderRadius="lg"
-            m={2}
-            px={13}
-            sx={{ overflow: "hidden" }}
           >
             <ArgonBox
               component="img"
               src={illustration.image}
               alt="background"
-              width="120%"
+              width="130%"
               height="100%"
               position="absolute"
-              top={0}
+              bottom={0}
               left={0}
             />
-            <ArgonBox
-              bgColor={color}
-              variant="gradient"
-              width="100%"
-              height="100%"
-              position="absolute"
-              topl={0}
-              left={0}
-              opacity={0.1}
-            />
-            <ArgonBox position="relative">
-              {illustration.title && (
-                <ArgonBox mt={6} mb={1}>
-                  <ArgonTypography variant="h3" color="white" fontWeight="bold">
-                    {illustration.title}
-                  </ArgonTypography>
-                </ArgonBox>
-              )}
-              {illustration.description && (
-                <ArgonBox mb={8}>
-                  <ArgonTypography variant="body1" color="white">
-                    {illustration.description}
-                  </ArgonTypography>
-                </ArgonBox>
-              )}
-            </ArgonBox>
           </ArgonBox>
         </Grid>
         <Grid item xs={11} sm={8} md={6} lg={4} xl={3} sx={{ mx: "auto" }}>
-          <ArgonBox display="flex" flexDirection="column" justifyContent="start" height="100vh">
-            <ArgonBox pt={3} px={3}>
-              {!header ? (
+          <ArgonBox
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            height="100vh"
+          >
+            <Card sx={{ px: 8, py: 6 }}>
+              <ArgonBox py={3}>
+                <ArgonBox mb={8}>
+                  <ArgonBox
+                    component="img"
+                    src={LogoFutsalPro}
+                    height={90}
+                    alt="background"
+                    px={5}
+                  />
+                </ArgonBox>
                 <>
-                  <ArgonBox mt={8} mb={8} ml={3}>
-                    <ArgonBox
-                      component="img"
-                      src={LogoFutsalPro}
-                      height={100}
-                      alt="background"
-                      top={0}
-                      left={0}
-                    />
-                  </ArgonBox>
                   <ArgonBox mb={1}>
                     <ArgonTypography variant="h5" fontWeight="bold">
                       {title}
@@ -102,11 +71,9 @@ function IllustrationLayout({ color, header, title, description, button, illustr
                     {description}
                   </ArgonTypography>
                 </>
-              ) : (
-                header
-              )}
-            </ArgonBox>
-            <ArgonBox p={3}>{children}</ArgonBox>
+                <ArgonBox pt={5}>{children}</ArgonBox>
+              </ArgonBox>
+            </Card>
           </ArgonBox>
         </Grid>
       </Grid>

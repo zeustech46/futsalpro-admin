@@ -7,7 +7,6 @@ import { hitungTotalHarga } from "utils/totalHarga/index";
 
 export const GET_LIST_USER_TOTAL = "GET_LIST_USER_TOTAL";
 export const GET_LIST_QUOTES = "GET_LIST_QUOTES";
-export const GET_LIST_PICTURES = "GET_LIST_PICTURES";
 export const ORDER_TODAY = "ORDER_TODAY";
 export const MONEY_TODAY = "MONEY_TODAY";
 export const SALES_THIS_MONTH = "SALES_THIS_MONTH";
@@ -45,25 +44,6 @@ export const getListQuotes = () => {
       })
       .catch((error) => {
         dispatchError(dispatch, GET_LIST_QUOTES, error);
-      });
-  };
-};
-
-export const getListPictures = () => {
-  return (dispatch) => {
-    dispatchLoading(dispatch, GET_LIST_PICTURES);
-
-    axios({
-      method: "get",
-      url: URL_PICTURES,
-      headers: HEADER_PICTURES,
-      timeout: API_TIMEOUT,
-    })
-      .then((res) => {
-        dispatchSuccess(dispatch, GET_LIST_PICTURES, res.data);
-      })
-      .catch((error) => {
-        dispatchError(dispatch, GET_LIST_PICTURES, error);
       });
   };
 };
